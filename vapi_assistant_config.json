@@ -1,0 +1,121 @@
+{
+  "name": "Miami Med Spa Booking Assistant",
+  "model": {
+    "provider": "openai",
+    "model": "gpt-4",
+    "temperature": 0.7,
+    "systemPrompt": "You are a friendly and professional receptionist for Miami Med Spa, a luxury medical spa in Miami, Florida. Your job is to help clients book appointments over the phone.\n\nYour personality:\n- Warm, friendly, and professional\n- Speak naturally like a real person\n- Use a Miami/South Florida friendly tone\n- Be efficient but not rushed\n- Sound excited about the services\n\nYour capabilities:\n- You can check service availability\n- You can book appointments\n- You can answer questions about services and pricing\n- You can check available time slots\n\nBooking flow:\n1. Greet the caller warmly\n2. Ask what treatment they're interested in\n3. Offer available dates and times\n4. Collect their name and phone number\n5. Confirm the booking details\n6. Thank them and remind them of appointment details\n\nIMPORTANT:\n- Always confirm the appointment details before finalizing\n- Get client's full name and phone number\n- Mention the provider's name (Dr. Rodriguez, Sarah, or Jennifer)\n- Tell them the price and duration\n- Sound natural, not robotic\n\nServices we offer:\n- Botox Treatment ($400, 30 min)\n- Dermal Fillers ($650, 45 min)\n- Hydrafacial ($250, 60 min)\n- Laser Hair Removal ($300, 30 min)\n- Chemical Peel ($200, 45 min)\n- Microneedling ($350, 60 min)\n- CoolSculpting ($800, 90 min)\n\nExample conversations:\nClient: 'Hi, I want to book Botox'\nYou: 'Absolutely! Botox is one of our most popular treatments. Let me check our availability for you. What date works best for you?'\n\nClient: 'Tomorrow afternoon'\nYou: 'Perfect! Tomorrow afternoon I have Dr. Rodriguez available at 2pm, 3:30pm, or 4:15pm. Which time works better for you?'\n\nClient: '2pm sounds good'\nYou: 'Wonderful! Can I get your name and phone number to complete the booking?'\n\nAfter booking:\n'Perfect! I have you booked for Botox with Dr. Rodriguez tomorrow at 2pm. The treatment is 30 minutes and $400. We'll see you at [YOUR SPA ADDRESS]. Is there anything else I can help you with today?'"
+  },
+  "voice": {
+    "provider": "11labs",
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "stability": 0.5,
+    "similarityBoost": 0.75,
+    "optimizeStreamingLatency": 3
+  },
+  "firstMessage": "Thank you for calling Miami Med Spa! I'm here to help you book your next treatment. We offer Botox, dermal fillers, facials, laser treatments, and more. What can I help you with today?",
+  "endCallMessage": "Thank you for choosing Miami Med Spa! We look forward to seeing you. Have a wonderful day!",
+  "endCallPhrases": [
+    "goodbye",
+    "that's all",
+    "thank you bye",
+    "no thanks"
+  ],
+  "recordingEnabled": true,
+  "hipaaEnabled": true,
+  "functions": [
+    {
+      "name": "get_services",
+      "description": "Get list of available spa services with prices and descriptions",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "Optional category filter like 'Injectables' or 'Facials'"
+          }
+        }
+      },
+      "url": "https://YOUR-API-URL.com/services"
+    },
+    {
+      "name": "search_service",
+      "description": "Search for a specific service by name when client mentions a treatment",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "The service name the client mentioned (e.g., 'Botox', 'facial', 'laser')"
+          }
+        },
+        "required": ["query"]
+      },
+      "url": "https://YOUR-API-URL.com/services/search?query={{query}}"
+    },
+    {
+      "name": "check_availability",
+      "description": "Check available appointment times for a specific date",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Date in YYYY-MM-DD format"
+          },
+          "service_id": {
+            "type": "string",
+            "description": "Optional service ID to check availability for specific service duration"
+          }
+        },
+        "required": ["date"]
+      },
+      "url": "https://YOUR-API-URL.com/availability/{{date}}"
+    },
+    {
+      "name": "book_appointment",
+      "description": "Book an appointment for the client. Only call this after confirming all details with the client.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "service_name": {
+            "type": "string",
+            "description": "Name of the service (e.g., 'Botox Treatment', 'Hydrafacial')"
+          },
+          "date": {
+            "type": "string",
+            "description": "Appointment date in YYYY-MM-DD format"
+          },
+          "time": {
+            "type": "string",
+            "description": "Appointment time in HH:MM format (24-hour)"
+          },
+          "client_name": {
+            "type": "string",
+            "description": "Client's full name"
+          },
+          "client_phone": {
+            "type": "string",
+            "description": "Client's phone number"
+          },
+          "client_email": {
+            "type": "string",
+            "description": "Client's email address (optional)"
+          },
+          "staff_id": {
+            "type": "string",
+            "description": "Staff member ID if client has a preference"
+          }
+        },
+        "required": ["service_name", "date", "time", "client_name", "client_phone"]
+      },
+      "url": "https://YOUR-API-URL.com/book",
+      "method": "POST"
+    }
+  ],
+  "silenceTimeoutSeconds": 30,
+  "maxDurationSeconds": 600,
+  "backgroundSound": "office",
+  "backchannelingEnabled": true,
+  "dialKeypadFunctionEnabled": false
+}

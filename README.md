@@ -2,6 +2,22 @@
 
 A comprehensive FastMCP server for managing a medical spa in Miami. This server provides AI assistants with tools to manage appointments, clients, services, and staff through the Model Context Protocol (MCP).
 
+## 🎯 Two Ways to Use This System
+
+### 1. 📞 **Voice AI Phone Assistant** (Recommended for Client Booking)
+Let your clients call a phone number and book appointments by talking naturally with an AI receptionist. No forms, no apps - just call and book!
+
+**Perfect for:** Clients on the go who want to book quickly
+
+👉 **[See Voice AI Setup Guide](VOICE_AI_SETUP.md)** for complete instructions
+
+### 2. 💬 **MCP Server for Claude Desktop** (For Business Management)
+Use with Claude Desktop to manage your spa business, view schedules, and handle operations.
+
+**Perfect for:** Spa owners and managers
+
+---
+
 ## Features
 
 ### Appointment Management
@@ -56,6 +72,34 @@ Or using pyproject.toml:
 ```bash
 pip install -e .
 ```
+
+## Quick Start for Voice AI Phone System
+
+Want clients to call and book via phone? Follow these steps:
+
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Start the API server
+./start_api.sh          # Mac/Linux
+# OR
+start_api.bat           # Windows
+
+# 3. Follow the Voice AI Setup Guide
+# See VOICE_AI_SETUP.md for complete instructions
+```
+
+Your API will be running at `http://localhost:8000`
+
+Then follow **[VOICE_AI_SETUP.md](VOICE_AI_SETUP.md)** to:
+- Deploy your API to the internet (Replit/Railway - free options available)
+- Set up Vapi.ai voice assistant (~$0.05/min)
+- Get a Miami phone number ($1-2/month)
+- Go live with AI phone booking!
+
+**Total setup time:** ~15 minutes
+**Monthly cost:** ~$20-50 (based on call volume)
 
 ## Running the Server
 
