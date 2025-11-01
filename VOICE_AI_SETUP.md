@@ -22,27 +22,45 @@ This guide will help you set up a voice AI phone line for your Miami Med Spa whe
 
 Your API needs to be accessible from the internet so the voice AI can call it.
 
-**Option A: Use Replit (Easiest - 5 minutes)**
+**⭐ Option A: Use Vercel (RECOMMENDED - 5 minutes, FREE)**
+
+Vercel is the easiest and fastest option with auto-deploy from GitHub!
+
+👉 **[See detailed Vercel guide](VERCEL_DEPLOYMENT.md)**
+
+Quick steps:
+1. Go to [vercel.com](https://vercel.com) and sign up with GitHub
+2. Click "Add New..." → "Project"
+3. Import your `med-spa-portal-1` repository
+4. Click "Deploy"
+5. Copy your URL (looks like: `https://med-spa-portal-1.vercel.app`)
+
+**Benefits:**
+- ✅ Free tier (enough for most spas)
+- ✅ Auto-deploy from GitHub
+- ✅ Global CDN (super fast)
+- ✅ SSL included
+- ✅ Zero configuration needed
+
+**Option B: Use Replit (Good alternative)**
 
 1. Go to [replit.com](https://replit.com)
 2. Sign up/login
-3. Click "Create Repl"
-4. Choose "Import from GitHub"
-5. Paste your repository URL
-6. Click "Import"
-7. Click "Run" button
-8. Copy the URL (looks like: `https://your-repl.repl.co`)
+3. Click "Create Repl" → "Import from GitHub"
+4. Paste your repository URL
+5. Click "Run" button
+6. Copy the URL (looks like: `https://your-repl.repl.co`)
 
-**Option B: Use Railway (Also Easy)**
+**Option C: Use Railway**
 
 1. Go to [railway.app](https://railway.app)
 2. Sign up with GitHub
 3. Click "New Project" → "Deploy from GitHub repo"
 4. Select your med-spa-portal-1 repo
-5. Add this start command: `uvicorn api_server:app --host 0.0.0.0 --port 8000`
+5. Add start command: `uvicorn api_server:app --host 0.0.0.0 --port 8000`
 6. Copy the public URL
 
-**Option C: Use Your Own Server**
+**Option D: Use Your Own Server**
 
 ```bash
 # Install dependencies

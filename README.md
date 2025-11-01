@@ -92,14 +92,24 @@ start_api.bat           # Windows
 
 Your API will be running at `http://localhost:8000`
 
+### Deploy to Vercel (Recommended - 5 minutes, FREE)
+
+**⭐ [See Vercel Deployment Guide](VERCEL_DEPLOYMENT.md)** - Easiest option!
+
+Quick Vercel deployment:
+1. Push your code to GitHub (already done ✓)
+2. Go to [vercel.com](https://vercel.com) and sign up with GitHub
+3. Click "Import Project" and select your repository
+4. Click "Deploy" - done!
+
 Then follow **[VOICE_AI_SETUP.md](VOICE_AI_SETUP.md)** to:
-- Deploy your API to the internet (Replit/Railway - free options available)
 - Set up Vapi.ai voice assistant (~$0.05/min)
 - Get a Miami phone number ($1-2/month)
+- Connect your Vercel API URL
 - Go live with AI phone booking!
 
 **Total setup time:** ~15 minutes
-**Monthly cost:** ~$20-50 (based on call volume)
+**Monthly cost:** $0-50 (Vercel free + pay-per-call pricing)
 
 ## Running the Server
 
@@ -243,11 +253,19 @@ Pre-configured staff members:
 ### Project Structure
 ```
 med-spa-portal-1/
-├── server.py              # Main FastMCP server
-├── requirements.txt       # Python dependencies
-├── pyproject.toml        # Project configuration
-├── README.md             # This file
-└── data/                 # Data storage (auto-created)
+├── server.py                      # Main FastMCP server
+├── api_server.py                  # REST API for Voice AI
+├── requirements.txt               # Python dependencies
+├── pyproject.toml                # Project configuration
+├── README.md                     # This file
+├── VOICE_AI_SETUP.md             # Voice AI setup guide
+├── VERCEL_DEPLOYMENT.md          # Vercel deployment guide
+├── vercel.json                   # Vercel configuration
+├── vercel_app.py                 # Vercel entry point
+├── start_api.sh                  # API start script (Mac/Linux)
+├── start_api.bat                 # API start script (Windows)
+├── vapi_assistant_config.json    # Voice AI assistant config
+└── data/                         # Data storage (auto-created)
     ├── appointments.json
     ├── clients.json
     ├── services.json
